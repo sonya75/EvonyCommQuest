@@ -348,3 +348,251 @@ function initializ(){
 	updater();
 }
 echo $m_dyn.initializ()$
+set sendresultsto Imran
+set declare 743,554
+set teleportto carinthia
+
+#Don't change anything below this line
+if {$c.player.playerInfo.medal$<100} goto end
+set flagname HO
+set cityname JO
+set s $c.af.getCommonCommands().addToFavorites()$
+label wait1
+sleep .2
+iferror $%s%.ok$ goto wait1
+completequests routine
+create cottage
+sleep 2
+upgrade cottage
+sleep 2
+completequests routine
+useitem Newbies_Package
+sleep 2
+completequests routine
+teleport %teleportto%
+create inn
+sleep 2
+completequests routine
+create rally
+sleep 2
+completequests routine
+create farm
+sleep 2
+completequests routine
+create saw
+sleep 2
+completequests routine
+create quarry
+sleep 2
+completequests routine
+create iron
+sleep 2
+completequests routine
+production 100 100 100 100
+sleep 2
+completequests routine
+settaxrate 20
+sleep 2
+completequests routine
+changecastlename %cityname%
+sleep 2
+completequests routine
+changeflag %flagname%
+sleep 2
+create market
+usebuilditem Beginner_Guidelines
+sleep 2
+completequests routine
+upgrade saw
+sleep 2
+completequests routine
+create warehouse
+sleep 2
+usebuilditem beginner_guidelines
+sleep 2
+completequests routine
+create c
+sleep 2
+upgrade c
+sleep 2
+create c
+sleep 2
+upgrade c
+sleep 2
+create c
+sleep 2
+upgrade c
+sleep 2
+completequests routine
+sleep 2
+levy lumber
+sleep 2
+completequests routine
+sleep 2
+upgrade t
+sleep 2
+usebuilditem beginner_guidelines
+usebuilditem beginner_guidelines
+sleep 2
+completequests routine
+sleep 2
+completequests routine
+useitem aries_amulet
+sleep 2
+completequests routine
+create a
+sleep 2
+usebuilditem beginner_guidelines
+sleep 2
+completequests routine
+create b
+sleep 2
+completequests routine
+set subject "Friend "
+set message " Hey There!"
+set junk $m_city.actionFactory.getMailCommands().sendMail(%sendresultsto%,%subject%,%message%)$
+sleep 2
+completequests routine
+sleep 2
+completequests routine
+create fh
+sleep 2
+completequests routine
+upgrade iron
+sleep 2
+upgrade iron
+sleep 2
+usebuilditem beginner_guidelines
+create fo
+sleep 2
+completequests routine
+upgrade fo
+sleep 2
+usebuilditem beginner_guidelines
+sleep 2
+create ws
+sleep 2
+usebuilditem beginner_guidelines
+sleep 2
+completequests routine
+sleep 2
+upgrade q
+sleep 2
+create w
+sleep 2
+usebuilditem beginner_guidelines
+usebuilditem beginner_guidelines
+sleep 2
+completequests routine
+set j $c.af.getShopCommands().getBuyResourceInfo(c.castle.id)$
+label wat
+sleep .2
+iferror $%j%.ok$ goto wat
+set j $c.af.getShopCommands().buyResource(c.castle.id,0,5,0,0)$
+label wat
+sleep .2
+iferror $%j%.ok$ goto wat
+upgrade t
+sleep 2
+usebuilditem primary_guidelines
+sleep 2
+completequests routine
+sleep 2
+completequests routine
+sleep 2
+create be
+sleep 2
+usebuilditem primary_guidelines
+sleep 2
+completequests routine
+sleep 2
+buy stone 20000 .9
+sleep 5
+canceltrade
+set nomerch 0
+set index 0
+label checktradesfors
+iferror $c.cm.transingTradesArray[%index%]$ goto errorinbuyingstone
+if {{$c.cm.transingTradesArray[%index%].amount$>10000}&&{$c.cm.transingTradesArray[%index%].resType$==2}} goto gotindexfors
+set index {%index%+1}
+goto checktradesfors
+label gotindexfors
+set id $c.cm.transingTradesArray[%index%].id$
+goto donebuyings
+label errorinbuyingstone
+echo "Stone will need 30 mintues to reach city"
+set nomerch 1
+sleep 1800
+goto donebuyings
+label donebuyings
+if {%nomerch%==0} set junk $c.af.getTradeCommands().speedUpTrans(c.castle.id,%id%,c.getItemId(merchant_fleet))$
+sleep 2
+canceltrade
+upgrade w
+sleep 2
+usebuilditem primary_guidelines
+sleep 2
+completequests routine
+sleep 2
+useitem package_for_lords
+sleep 2
+useitem junior_medal_box
+sleep 2
+completequests routine
+sleep 2
+completequests routine
+sleep 2
+untrain wo:250
+buy stone 70000 1
+sleep 5
+canceltrade
+set nomerch 0
+set index 0
+label checktradesfors1
+iferror $c.cm.transingTradesArray[%index%]$ goto errorinbuyingstone1
+if {{$c.cm.transingTradesArray[%index%].amount$>30000}&&{$c.cm.transingTradesArray[%index%].resType$==2}} goto gotindexfors1
+set index {%index%+1}
+goto checktradesfors1
+label gotindexfors1
+set id $c.cm.transingTradesArray[%index%].id$
+goto donebuyings1
+label errorinbuyingstone1
+echo "Stone will need 30 mintues to reach city"
+set nomerch 1
+sleep 1800
+goto donebuyings1
+label donebuyings1
+if {%nomerch%==0} set junk $c.af.getTradeCommands().speedUpTrans(c.castle.id,%id%,c.getItemId(merchant_fleet))$
+sleep 2
+canceltrade
+upgrade w
+sleep 2
+usebuilditem intermediate_guidelines
+sleep 2
+completequests routine
+sleep 2
+upgrade t
+sleep 1
+usebuilditem intermediate_guidelines
+sleep 2
+completequests routine
+upgrade t
+sleep 2
+usebuilditem primary_guidelines
+usebuilditem primary_guidelines
+usebuilditem primary_guidelines
+usebuilditem primary_guidelines
+sleep 2
+completequests routine
+buyitem solid_walls_and_empty_fields
+usestratitem $c.coord$ solid_walls_and_empty_fields
+sleep 5
+completequests routine
+sleep 5
+buyitem wage_war_without_declaration
+usestratitem %declare% wage_war_without_declaration
+sleep 5
+completequests routine
+sleep 2
+label end
+logout now
